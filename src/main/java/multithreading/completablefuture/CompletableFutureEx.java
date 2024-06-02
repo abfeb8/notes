@@ -36,6 +36,7 @@ public class CompletableFutureEx {
         );
 
         System.out.println(asyncTask.get()); // blocking operation
+        executor.close();
 
     }
 
@@ -69,6 +70,7 @@ public class CompletableFutureEx {
                 .thenApplyAsync(s -> combinePreviousWithNext(s, "task_4"), executor);
 
         System.out.println(STR."result: \{asyncTask.get()}"); // blocking operation
+        executor.close();
     }
 
     /**
@@ -92,6 +94,7 @@ public class CompletableFutureEx {
                 .thenComposeAsync(s -> CompletableFuture.supplyAsync(callableTask(STR."\{s} task_4"), executor), executor);
 
         System.out.println(STR."result: \{asyncTask.get()}"); // blocking operation
+        executor.close();
     }
 
     /**
@@ -112,6 +115,7 @@ public class CompletableFutureEx {
                 .thenAccept(s -> System.out.println(STR."result: \{s}")); // non-blocking operation
 
         System.out.println("main thread released");
+        executor.close();
     }
 
 
