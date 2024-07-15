@@ -1,4 +1,4 @@
-package design_patterns.decorator.with_pattern;
+package design_patterns.decorator_pattern.with_pattern;
 
 public class Espresso implements Coffee {
 

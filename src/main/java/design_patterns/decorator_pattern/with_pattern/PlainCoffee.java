@@ -1,4 +1,4 @@
-package design_patterns.decorator.with_pattern;
+package design_patterns.decorator_pattern.with_pattern;
 
 // Concrete Component
 public class PlainCoffee implements Coffee {

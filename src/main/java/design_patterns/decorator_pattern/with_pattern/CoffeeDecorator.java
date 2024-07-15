@@ -1,4 +1,4 @@
-package design_patterns.decorator.with_pattern;
+package design_patterns.decorator_pattern.with_pattern;
 
 // Decorator
 abstract class CoffeeDecorator implements Coffee {

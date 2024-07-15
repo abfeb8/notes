@@ -1,4 +1,4 @@
-package design_patterns.decorator.without_pattern;
+package design_patterns.decorator_pattern.without_pattern;
 
 public class Main {
     public static void main(String[] args) {
