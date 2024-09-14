@@ -17,9 +17,9 @@ jobs:
       #name for step to display on GitHub.
       - name: workflow info
         #Runs command-line programs that do not exceed 21,000 characters using the operating system's shell.
-        run: |
-          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+        run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - name: github info
+        #multi line run
         run: |
           echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
           echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
