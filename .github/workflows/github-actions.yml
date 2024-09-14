@@ -1,18 +1,33 @@
+#The name of the workflow.
 name: GitHub Actions Demo
+#The name for workflow runs generated from the workflow.
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+#define which events can cause the workflow to run
+on: [ push ]
+#define jobs for the workflow
 jobs:
+  #job-id a unique identifier
   Explore-GitHub-Actions:
+    #name for the job, which is displayed in the GitHub UI.
+    name: Test Job
+    #define the type of machine to run the job on
     runs-on: ubuntu-latest
+    #define job steps
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      #name for step to display on GitHub.
+      - name: workflow info
+        #Runs command-line programs that do not exceed 21,000 characters using the operating system's shell.
+        run: |
+          echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - name: github info
+          echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+          echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
+        #Selects an action to run as part of a step in your job.
         uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: checked out branch info
+        run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
+        run: ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
