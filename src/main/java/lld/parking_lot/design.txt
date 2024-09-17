@@ -1,0 +1,12 @@
+Flow:
+    vehicle comes at -> entry gate -> finds a parking spot -> blocks the parking spot -> generates a ticket -> open gate
+    vehicle comes at -> exit gate -> calculate total bill -> accept payment -> unblock parking spot -> open gate
+
+Key Entities:
+    Parking Lot: parking lot itself
+    Parking floors: parking lot might contain more then one floor
+    Parking Spot: every floor will have many parking spots
+    Vehicle: car, bike, truck.. anything which need to be parked
+    Gate: entry/exit gates
+    Ticket: every parked vehicle will have a assigned ticket with parking details
+    Payment: payment handler
