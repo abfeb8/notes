@@ -22,7 +22,7 @@ public class TicTacToe {
 
     public void play() {
         // print welcome msg
-        System.out.println(STR."Let's play \{p1} & \{p2}");
+        System.out.printf("Let's play %s & %s%n", p1, p2);
 
         // start play loop
         while (true) {
@@ -36,7 +36,7 @@ public class TicTacToe {
                 updateBoard(userIn);
                 // check for winner
                 if (checkWin(userIn)) {
-                    System.out.println(STR."\{isFirstPlayerTurn ? p1 : p2} WON!!");
+                    System.out.printf("%s WON!!", isFirstPlayerTurn ? p1 : p2);
                     break;
                 }
                 // check for Draw
@@ -83,7 +83,7 @@ public class TicTacToe {
     private boolean isValidInput(int[] userIn) {
         int r = userIn[0], c = userIn[1];
         if (r < 0 || c < 0 || r >= boardSize || c >= boardSize) {
-            System.out.println(STR."input out of bound, pls enter number in range [1,\{boardSize}]");
+            System.out.printf("input out of bound, pls enter number in range [1,%s]%n", boardSize);
             return false;
         }
 
@@ -96,7 +96,7 @@ public class TicTacToe {
     }
 
     private int[] getUserInput() {
-        System.out.println(STR."\{isFirstPlayerTurn ? p1 : p2} pls provid input");
+        System.out.printf("%s pls provide input%n", isFirstPlayerTurn ? p1 : p2);
         int r = scn.nextInt();
         int c = scn.nextInt();
 
@@ -106,7 +106,7 @@ public class TicTacToe {
     private void displayBoard() {
         for (int r = 0; r < boardSize; r++) {
             for (int c = 0; c < boardSize; c++) {
-                System.out.printf(STR."\{board[r][c] == null ? "_" : board[r][c]} ");
+                System.out.printf(String.format("%s", board[r][c] == null ? "_" : board[r][c]));
             }
             System.out.println();
         }

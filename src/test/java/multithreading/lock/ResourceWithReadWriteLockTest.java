@@ -14,8 +14,8 @@ class ResourceWithReadWriteLockTest {
         var resource = new ResourceWithReadWriteLock(readWriteLock);
 
         for (int i = 1; i <= 3; i++) {
-            var producerThread = new Thread(new Pub(resource), STR."PRODUCER_THREAD_\{i}");
-            var consumerThread = new Thread(new Sub(resource), STR."CONSUMER_THREAD_\{i}");
+            var producerThread = new Thread(new Pub(resource), String.format("PRODUCER_THREAD_%s", i));
+            var consumerThread = new Thread(new Sub(resource), String.format("CONSUMER_THREAD_%s", i));
 
             producerThread.start();
             consumerThread.start();

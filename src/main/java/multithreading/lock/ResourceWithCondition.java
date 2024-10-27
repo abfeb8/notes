@@ -27,16 +27,16 @@ public class ResourceWithCondition {
         lock.lock();
 
         try {
-            System.out.println(STR."\{Thread.currentThread().getName()} locked resource");
+            System.out.printf("%s locked resource%n", Thread.currentThread().getName());
 
             if (isAvailable) {
 
-                System.out.println(STR."\{Thread.currentThread().getName()} resource is available, waiting for it to get consumed");
+                System.out.printf("%s resource is available, waiting for it to get consumed%n", Thread.currentThread().getName());
                 if (resourceNotConsumed.await(3, TimeUnit.SECONDS)) {
-                    System.out.println(STR."\{Thread.currentThread().getName()} notified/intrupted, resuming task");
+                    System.out.printf("%s notified/interrupted, resuming task%n", Thread.currentThread().getName());
 
                     if (isAvailable) {
-                        System.out.println(STR."resource not consumend after waiting, \{Thread.currentThread().getName()} returing without processing");
+                        System.out.printf("resource not consumed after waiting, %s returning without processing%n", Thread.currentThread().getName());
                         return;
                     }
                 }
@@ -49,7 +49,7 @@ public class ResourceWithCondition {
         } catch (Exception _) {
 
         } finally {
-            System.out.println(STR."\{Thread.currentThread().getName()} is done, releasing monitor lock and notifying all waiting threads");
+            System.out.printf("%s is done, releasing monitor lock and notifying all waiting threads%n", Thread.currentThread().getName());
             lock.unlock();
         }
     }
@@ -59,17 +59,17 @@ public class ResourceWithCondition {
         lock.lock();
 
         try {
-            System.out.println(STR."\{Thread.currentThread().getName()} locked \{this.getClass().getName()}");
+            System.out.printf("%s locked %s%n", Thread.currentThread().getName(), this.getClass().getName());
 
             if (!isAvailable) {
 
-                System.out.println(STR."resource is not available, \{Thread.currentThread().getName()} waiting");
+                System.out.printf("resource is not available, %s waiting%n", Thread.currentThread().getName());
 
                 if (resourceNotAvailable.await(3, TimeUnit.SECONDS)) {
-                    System.out.println(STR."\{Thread.currentThread().getName()} notified/intrupted, resuming task");
+                    System.out.printf("%s notified/interrupted, resuming task%n", Thread.currentThread().getName());
 
                     if (!isAvailable) {
-                        System.out.println(STR."resource not available after waiting, \{Thread.currentThread().getName()} returing without processing");
+                        System.out.printf("resource not available after waiting, %s returning without processing%n", Thread.currentThread().getName());
                         return;
                     }
                 }
@@ -82,7 +82,7 @@ public class ResourceWithCondition {
         } catch (Exception _) {
 
         } finally {
-            System.out.println(STR."\{Thread.currentThread().getName()} is done, unlocking");
+            System.out.printf("%s is done, unlocking%n", Thread.currentThread().getName());
             lock.unlock();
         }
     }

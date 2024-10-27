@@ -69,7 +69,7 @@ public class CompletableFutureEx {
                 .thenApplyAsync(s -> combinePreviousWithNext(s, "task_3"))
                 .thenApplyAsync(s -> combinePreviousWithNext(s, "task_4"), executor);
 
-        System.out.println(STR."result: \{asyncTask.get()}"); // blocking operation
+        System.out.printf("result: %s%n", asyncTask.get()); // blocking operation
         executor.close();
     }
 
@@ -89,11 +89,11 @@ public class CompletableFutureEx {
                         callableTask("task_1"),
                         executor
                 )
-                .thenCompose(s -> CompletableFuture.supplyAsync(callableTask(STR."\{s} task_2")))
-                .thenComposeAsync(s -> CompletableFuture.supplyAsync(callableTask(STR."\{s} task_3")))
-                .thenComposeAsync(s -> CompletableFuture.supplyAsync(callableTask(STR."\{s} task_4"), executor), executor);
+                .thenCompose(s -> CompletableFuture.supplyAsync(callableTask(String.format("%s task_2", s))))
+                .thenComposeAsync(s -> CompletableFuture.supplyAsync(callableTask(String.format("%s task_3", s))))
+                .thenComposeAsync(s -> CompletableFuture.supplyAsync(callableTask(String.format("%s task_4", s)), executor), executor);
 
-        System.out.println(STR."result: \{asyncTask.get()}"); // blocking operation
+        System.out.printf("result: %s%n", asyncTask.get()); // blocking operation
         executor.close();
     }
 
@@ -112,7 +112,7 @@ public class CompletableFutureEx {
                 .thenApply(s -> combinePreviousWithNext(s, "task_2"))
                 .thenApply(s -> combinePreviousWithNext(s, "task_3"))
                 .thenApply(s -> combinePreviousWithNext(s, "task_4"))
-                .thenAccept(s -> System.out.println(STR."result: \{s}")); // non-blocking operation
+                .thenAccept(s -> System.out.printf("result: %s%n", s)); // non-blocking operation
 
         System.out.println("main thread released");
         executor.close();
@@ -120,25 +120,25 @@ public class CompletableFutureEx {
 
 
     private static String combinePreviousWithNext(String previous, String next) {
-        System.out.println(STR."Thread: \{Thread.currentThread().getName()}, Previous: \{previous}, Next: \{next}");
+        System.out.printf("Thread: %s, Previous: %s, Next: %s%n", Thread.currentThread().getName(), previous, next);
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return STR."\{previous}->\{next}";
+        return String.format("%s->%s", previous, next);
     }
 
     private static Supplier<String> callableTask(String taskValue) {
         return () -> {
             try {
-                System.out.println(STR."callable task: \{taskValue} starts");
-                System.out.println(STR."callable thread name: \{Thread.currentThread().getName()}");
+                System.out.printf("callable task: %s starts%n", taskValue);
+                System.out.printf("callable thread name: %s%n", Thread.currentThread().getName());
                 Thread.sleep(1000);
             } catch (Exception e) {
                 // handle exception
             }
-            System.out.println(STR."callable task: \{taskValue} completes");
+            System.out.printf("callable task: %s completes%n", taskValue);
             return taskValue;
         };
     }

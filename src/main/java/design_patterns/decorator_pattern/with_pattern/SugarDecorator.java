@@ -14,7 +14,7 @@ public class SugarDecorator extends CoffeeDecorator {
 
     @Override
     public String description() {
-        return STR."\{super.description()} with sugar";
+        return String.format("%s with sugar", super.description());
     }
 
 }

@@ -59,7 +59,7 @@ class Producers implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(STR."\{Thread.currentThread().getName()} invoked");
+        System.out.printf("%s invoked%n", Thread.currentThread().getName());
         try {
             resource.produce();
         } catch (InterruptedException e) {
@@ -78,7 +78,7 @@ class Consumers implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(STR."\{Thread.currentThread().getName()} invoked");
+        System.out.printf("%s invoked%n", Thread.currentThread().getName());
         try {
             resource.consume();
         } catch (InterruptedException e) {

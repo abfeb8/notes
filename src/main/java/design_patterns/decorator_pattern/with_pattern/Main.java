@@ -9,13 +9,13 @@ public class Main {
         coffee = new MilkDecorator(coffee);
         coffee = new SugarDecorator(coffee);
 
-        System.out.println(STR."\{coffee.description()} costs \{coffee.cost()}");
+        System.out.printf("%s costs %s%n", coffee.description(), coffee.cost());
 
         // Example 2
         Coffee espresso = new Espresso();
         espresso = new SugarDecorator(espresso);
 
-        System.out.println(STR."\{espresso.description()} costs \{espresso.cost()}");
+        System.out.printf("%s costs %s%n", espresso.description(), espresso.cost());
     }
 
 }

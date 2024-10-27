@@ -3,7 +3,7 @@ package design_patterns.decorator_pattern.without_pattern;
 public class Main {
     public static void main(String[] args) {
         Coffee coffee = new SugarMilkCoffee();
-        System.out.println(STR."\{coffee.description()} costs \{coffee.cost()}");
+        System.out.printf("%s costs %s%n", coffee.description(), coffee.cost());
     }
 }
 
@@ -25,7 +25,7 @@ class MilkCoffee extends Coffee {
 
     @Override
     public String description() {
-        return STR."\{super.description()} with milk";
+        return String.format("%s with milk", super.description());
     }
 }
 
@@ -37,6 +37,6 @@ class SugarMilkCoffee extends MilkCoffee {
 
     @Override
     public String description() {
-        return STR."\{super.description()} with sugar";
+        return String.format("%s with sugar", super.description());
     }
 }

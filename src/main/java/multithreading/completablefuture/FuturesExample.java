@@ -51,7 +51,7 @@ public class FuturesExample {
         return () -> {
             try {
                 System.out.println("runnable task starts");
-                System.out.println(STR."Runnable thread name: \{Thread.currentThread().getName()}");
+                System.out.printf("Runnable thread name: %s%n", Thread.currentThread().getName());
                 Thread.sleep(1000);
             } catch (Exception e) {
                 // handle exception
@@ -69,7 +69,7 @@ public class FuturesExample {
         return () -> {
             try {
                 System.out.println("callable task starts");
-                System.out.println(STR."Callable thread name: \{Thread.currentThread().getName()}");
+                System.out.printf("Callable thread name: %s%n", Thread.currentThread().getName());
                 Thread.sleep(1000);
             } catch (Exception e) {
                 // handle exception

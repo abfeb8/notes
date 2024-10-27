@@ -19,7 +19,7 @@ public class ResourceWithReadWriteLock {
     public void produce() {
         try {
             queueLock.writeLock().lock();
-            System.out.println(STR."\{Thread.currentThread().getName()} acquired write lock \{LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss"))}");
+            System.out.printf("%s acquired write lock %s%n", Thread.currentThread().getName(), LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss")));
 
             queue.add((int) (Math.random() * 10));
             Thread.sleep(3000);
@@ -27,7 +27,7 @@ public class ResourceWithReadWriteLock {
         } catch (Exception _) {
 
         } finally {
-            System.out.println(STR."\{Thread.currentThread().getName()} completed, unlocking \{LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss"))}");
+            System.out.printf("%s completed, unlocking %s%n", Thread.currentThread().getName(), LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss")));
             queueLock.writeLock().unlock();
         }
     }
@@ -35,16 +35,16 @@ public class ResourceWithReadWriteLock {
     public void consume() {
         try {
             queueLock.readLock().lock();
-            System.out.println(STR."\{Thread.currentThread().getName()} acquired read lock \{LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss"))}");
+            System.out.printf("%s acquired read lock %s%n", Thread.currentThread().getName(), LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss")));
 
             int val = queue.isEmpty() ? -1 : queue.poll();
-            System.out.println(STR."\{Thread.currentThread().getName()} consumed \{val} from queue");
+            System.out.printf("%s consumed %s from queue%n", Thread.currentThread().getName(), val);
             Thread.sleep(1000);
 
         } catch (Exception _) {
 
         } finally {
-            System.out.println(STR."\{Thread.currentThread().getName()} completed, unlocking \{LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss"))}");
+            System.out.printf("%s completed, unlocking %s%n", Thread.currentThread().getName(), LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm:ss")));
             queueLock.readLock().unlock();
         }
     }

@@ -22,7 +22,7 @@ class ThreadPoolExecutorExampleTest {
         return () -> {
             try {
                 Thread.sleep(1000);
-                System.out.println(STR."Thread name: \{Thread.currentThread().getName()}");
+                System.out.printf("Thread name: %s%n", Thread.currentThread().getName());
             } catch (Exception e) {
                 // handle exception
             }

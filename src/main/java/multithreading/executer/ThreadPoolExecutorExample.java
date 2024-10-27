@@ -58,6 +58,6 @@ class CustomRejectionHandler implements RejectedExecutionHandler {
      */
     @Override
     public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
-        System.out.println(STR."task denied: \{r.toString()}");
+        System.out.printf("task denied: %s%n", r.toString());
     }
 }

@@ -26,7 +26,7 @@ class SharedResourceTest {
         var producer = new Producer(sharedResource);
 
         Runnable consumer = () -> {
-            System.out.println(STR."\{Thread.currentThread().getName()} invoked");
+            System.out.printf("%s invoked%n", Thread.currentThread().getName());
             try {
                 sharedResource.consume();
             } catch (InterruptedException e) {
@@ -54,7 +54,7 @@ class SharedResourceTest {
         var producer = new Producer(resource1);
 
         Runnable consumer = () -> {
-            System.out.println(STR."\{Thread.currentThread().getName()} invoked");
+            System.out.printf("%s invoked%n", Thread.currentThread().getName());
             try {
                 resource2.consume();
             } catch (InterruptedException e) {
@@ -80,7 +80,7 @@ class Producer implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(STR."\{Thread.currentThread().getName()} invoked");
+        System.out.printf("%s invoked%n", Thread.currentThread().getName());
         try {
             sharedResource.produce();
         } catch (InterruptedException e) {
